@@ -14,3 +14,7 @@ body {
     color: #fff;
     border-color: #fff;
 }
+.nm_post.list-group { display:  block; }
+.nm_post_image { width: 20%;  float: left; }
+.nm_post_content { width: 80%; }
+div.list-group-item { margin-bottom: 2em }
