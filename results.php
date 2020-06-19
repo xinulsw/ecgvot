@@ -96,7 +96,19 @@
         <p class="lead blog-description">Czego dowiesz się sam, tego się nauczysz!</p>
     </div>
 
-    <?php get_page_content(); ?>
+    <?php
+      print_r($_GET);
+      $words=null;
+      $page=1;
+      if (isset($_GET['words'])) $words=trim($_GET['words']);
+      if (isset($_GET['page'])) $page=trim($_GET['page']);
+      $res = return_i18n_search_results($tags=null, $words, $first=0, $max=10, $order=null, $lang=null);
+      if ($res) echo '<ul>';
+      foreach ($res['results'] as $entry) {
+        echo '<li>'.$entry->title.'</li>';
+      }
+      if ($res) echo '</ul>';
+    ?>
 
     </div>
 
