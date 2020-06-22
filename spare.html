@@ -13,12 +13,24 @@
       </li>
     </ul>
 
-    <nav class="blog-pagination">
-      <a class="btn btn-outline-primary" href="#">&laquo;&laquo;</a>
-      <a class="btn btn-outline-secondary disabled" href="#">&raquo;&raquo;</a>
-    </nav>
-
 
 (% searchform showTags:0 %)
 
 (% searchresults max:30 showLanguage:0 DATE_FORMAT:"%Y.%m.%d" HEADER='' %)
+
+          <script type="text/javascript" src="http://ecg.vot.pl/plugins/i18n_search/js/jquery.autocomplete.min.js"></script>
+          <script type="text/javascript">
+            $(function () {
+              var $live = $('ul.search-results.search-live');
+              // add css file
+              $('head').append('<link rel="stylesheet" type="text/css" href="http://ecg.vot.pl/plugins/i18n_search/css/jquery.autocomplete.css"></link>');
+              $('form.search input[name=words]').autocomplete(
+                "http:\/\/ecg.vot.pl\/plugins\/i18n_search\/ajax\/suggest.php?langs=,pl", {
+                minChars: 1,
+                max: 50,
+                scroll: true,
+                multiple: true,
+                multipleSeparator: ' '
+              });
+            });
+          </script>

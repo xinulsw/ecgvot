@@ -48,22 +48,6 @@
         <form class="form-inline nawigacja my-auto justify-content-end" action="http://ecg.vot.pl/search-all" method="GET">
           <input type="text" name="words" class="form-control mr-sm-2 search-words" value="" placeholder="Szukane słowa" aria-label="Szukaj">
           <input type="submit" name="search" class="btn btn-outline-success my-2 my-sm-0 search-submit" value="Szukaj" />
-          <script type="text/javascript" src="http://ecg.vot.pl/plugins/i18n_search/js/jquery.autocomplete.min.js"></script>
-          <script type="text/javascript">
-            $(function () {
-              var $live = $('ul.search-results.search-live');
-              // add css file
-              $('head').append('<link rel="stylesheet" type="text/css" href="http://ecg.vot.pl/plugins/i18n_search/css/jquery.autocomplete.css"></link>');
-              $('form.search input[name=words]').autocomplete(
-                "http:\/\/ecg.vot.pl\/plugins\/i18n_search\/ajax\/suggest.php?langs=,pl", {
-                minChars: 1,
-                max: 50,
-                scroll: true,
-                multiple: true,
-                multipleSeparator: ' '
-              });
-            });
-          </script>
         </form>
         </div>
       </div>
@@ -98,16 +82,29 @@
 
     <?php
       print_r($_GET);
-      $words=null;
-      $page=1;
+      $words = null;
+      $max = 10;
+      $page = 0;
+      $first = 0;
       if (isset($_GET['words'])) $words=trim($_GET['words']);
       if (isset($_GET['page'])) $page=trim($_GET['page']);
-      $res = return_i18n_search_results($tags=null, $words, $first=0, $max=10, $order=null, $lang=null);
-      if ($res) echo '<ul>';
+      $first += ($page * $max);
+      $res = return_i18n_search_results(
+        $tags=null, $words, $first, $max, $order=null, $lang='pl');
+      $all = $res['totalCount'];
+      if ($res) echo '<ul class="list-group">';
       foreach ($res['results'] as $entry) {
-        echo '<li>'.$entry->title.'</li>';
+        echo '<li class="list-group-item">';
+        echo '<h3>'.$entry->title.'</h3>';
+        echo '<p>'.$entry->getExcerpt($entry->content, '20').'</p>';
+        echo '</li>';
       }
       if ($res) echo '</ul>';
+      if ($all > $max) echo '<nav class="blog-pagination">';
+      if ($page > 0)
+        echo '<a class="btn btn-outline-primary" href="'.get_site_url().get_page_slug().'?words='.$words.'&page='.($page-1).'">&laquo;&laquo; '.($page+1).'</a>';
+        '<a class="btn btn-outline-secondary disabled" href="#">&raquo;&raquo;</a>';
+      if ($all > $max) echo '</nav>';
     ?>
 
     </div>

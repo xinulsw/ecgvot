@@ -48,22 +48,6 @@
         <form class="form-inline nawigacja my-auto justify-content-end" action="http://ecg.vot.pl/search-all" method="GET">
           <input type="text" name="words" class="form-control mr-sm-2 search-words" value="" placeholder="Szukane słowa" aria-label="Szukaj">
           <input type="submit" name="search" class="btn btn-outline-success my-2 my-sm-0 search-submit" value="Szukaj" />
-          <script type="text/javascript" src="http://ecg.vot.pl/plugins/i18n_search/js/jquery.autocomplete.min.js"></script>
-          <script type="text/javascript">
-            $(function () {
-              var $live = $('ul.search-results.search-live');
-              // add css file
-              $('head').append('<link rel="stylesheet" type="text/css" href="http://ecg.vot.pl/plugins/i18n_search/css/jquery.autocomplete.css"></link>');
-              $('form.search input[name=words]').autocomplete(
-                "http:\/\/ecg.vot.pl\/plugins\/i18n_search\/ajax\/suggest.php?langs=,pl", {
-                minChars: 1,
-                max: 50,
-                scroll: true,
-                multiple: true,
-                multipleSeparator: ' '
-              });
-            });
-          </script>
         </form>
         </div>
       </div>
@@ -92,8 +76,8 @@
     <div class="col-md-8">
 
     <div class="blog-header">
-        <h1 class="blog-title"><?php get_page_title(); ?></h1>
-        <p class="lead blog-description">Czego dowiesz się sam, tego się nauczysz!</p>
+        <h1><?php get_page_title(); ?></h1>
+        <p class="lead">Czego dowiesz się sam, tego się nauczysz!</p>
     </div>
 
     <?php get_page_content(); ?>
