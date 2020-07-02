@@ -16,7 +16,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="apple-touch-icon" href="icon.png">
         <!-- Place favicon.ico in the root directory -->
-
+        <!-- jQuery full minified version -->
+        <script src="<?php get_theme_url(); ?>/vendor/jquery-3.5.1.min.js"></script>
         <!-- Bootstrap 4.5 CSS -->
         <link rel="stylesheet" href="<?php get_theme_url(); ?>/vendor/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="<?php get_theme_url(); ?>/css/ecg.css">
