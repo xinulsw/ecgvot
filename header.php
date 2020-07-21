@@ -31,7 +31,7 @@
   <div class="container-fluid nawigacja-tlo">
     <div class="container">
       <div class="row">
-        <div class="col-md-7">
+        <div class="col-lg-7">
           <nav class="navbar navbar-expand-md navbar-dark nawigacja">
             <a class="navbar-brand" href="<?php get_site_url();?>"><?php get_site_name(); ?></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,7 +44,7 @@
             </div>
           </nav>
         </div>
-        <div class="col-md-5">
+        <div class="col-lg-5">
         <form class="form-inline nawigacja my-auto justify-content-end" action="http://ecg.vot.pl/search-all" method="GET">
           <input type="text" name="words" class="form-control mr-sm-2 search-words" value="" placeholder="Szukane słowa" aria-label="Szukaj">
           <input type="submit" name="search" class="btn btn-outline-success my-2 my-sm-0 search-submit" value="Szukaj" />
@@ -56,14 +56,16 @@
 
   <div class="container-fluid">
     <div class="container">
-      <nav class="breadcrumb">
+      <nav class="breadcrumb breadcrumbs-tlo text-uppercase">
         <a class="breadcrumb-item" href="<?php get_site_url();?>">eCG</a>
         <!-- <a href="<?php echo find_url('index',null); ?>">Strona główna</a> -->
         <?php
           $menu2 = return_i18n_breadcrumbs(return_page_slug());
-          for ($i = 0; $i < count($menu2) - 1; $i++)
-            echo '<a href="'.$menu2[$i]['url'].'" class="breadcrumb-item">'.$menu2[$i]['title'].'</a>';
-          echo '<span class="breadcrumb-item active">'.$menu2[$i]['title'].'</span>';
+          if (count($menu2) > 0) {
+            for ($i = 0; $i < count($menu2) - 1; $i++)
+              echo '<a href="'.$menu2[$i]['url'].'" class="breadcrumb-item">'.$menu2[$i]['title'].'</a>';
+            echo '<span class="breadcrumb-item active">'.$menu2[$i]['title'].'</span>';
+          }
         ?>
       </nav>
     </div>

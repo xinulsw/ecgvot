@@ -11,7 +11,7 @@
 <footer>
   <?php get_footer(); ?>
   <div class="container">
-    <div class="row alert alert-dark mt-3">
+    <div class="row alert alert-dark breadcrumbs-tlo mt-3">
       <div class="col-6">
         <?php echo date('Y'); ?> &copy; by eCG
         &nbsp;~&nbsp;<?php echo get_execution_time(); ?>

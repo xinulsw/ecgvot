@@ -49,53 +49,55 @@ function Innovation_Settings() {
 	}
 }
 */
+
+function echo_menu_item($v) {
+  echo '<li><a href="'.get_site_url(false).$v['url'].'">'.$v['menu'].'</a></li>';
+}
+
 function getParent() {
-	$stronaGlowna = false;
 	$slug = return_page_slug();
 	if ($slug == '404') {
 		echo '<a href=".">Strona główna</a>';
 		return false;
 	}
+	$stronaGlowna = false;
+	$parent = '';
+	$pdata=menu_data($slug);
 	if (strcmp($slug, 'index') == 0) {
 		$parent='<a href="'.$pdata['slug'].'">Zmiany</a>';
 		$stronaGlowna = true;
 	} else {
-		$pdata=menu_data($slug);
-		//print_r($pdata);
-		if (empty($pdata['parent_slug'])) {
-			$parent='<a href="'.$pdata['slug'].'">'.$pdata['menu_text'].'</a>';
-		} else if (isset($pdata['parent_slug'])){
+		// print_r($pdata);
+		// if (empty($pdata['parent_slug'])) {
+		// 	$parent='<a href="'.$pdata['slug'].'">'.$pdata['menu_text'].'</a>';
+		// } else
+		if (!empty($pdata['parent_slug'])){
 			$ppdata=menu_data($pdata['parent_slug']);
 			$parent='<a href="'.$pdata['parent_slug'].'">'.$ppdata['menu_text'].'</a>';
-		} else $parent=$pdata['menu_text'];
+		}
+		// else $parent=$pdata['menu_text'];
 	}
-	echo $parent;
-	return $stronaGlowna;
-}
-
-function show_lastUpdate() {
-	//define('LUPDATE_FILE', GSDATAOTHERPATH.'lastupdate.xml');
-	echo '<ul>';
-	if (!file_exists(LUPDATE_FILE)) {
-		echo '<li>Brak listy zmian!</li>';
-		return;
+	if (!empty($parent)) {
+		echo '<div class="alert alert-primary">'.$parent.'</div>';
 	}
-	$xmldata = getXML(LUPDATE_FILE);
-	foreach ($xmldata as $page) {
-		$tb[]=array((string)$page->lastUpdate,(string)$page->url,(string)$page->title);
+	if ($stronaGlowna) {
+		echo '<div>'.show_lastUpdate().'</div>';
+	} else {
+			$podmenu = return_i18n_menu_data(return_page_slug(), 1, 4, $show=I18N_SHOW_MENU);
+      // print_r($podmenu);
+      //print_r(menu_data(return_page_slug()));
+      if (!empty($podmenu)) {
+        echo '<div><ul>';
+        foreach ($podmenu as $k => $v) {
+				//print_r($v);
+        	if (strcmp($slug, $v['parent']) == 0) echo_menu_item($v);
+          else if (!empty($v['children']) && (strcmp($slug, $v['url']) == 0) ) {
+            foreach ($v['children'] as $j => $k) {
+              echo_menu_item($k);
+            }
+          }
+        }
+        echo '</ul></div>';
+			}
 	}
-	arsort($tb);//posortuj rosnąco
-	$i=0;
-	foreach ($tb as $l => $t) {
-		if ($i<3) //pokaż tylko 12 ostatnich zmian
-			echo '<li><a href="'.get_site_url(false).$t[1].'">'.$t[2].'</a><br />['.$t[0].']</li>';
-		else
-			break;
-		$i++;
-	}
-	echo '</ul>';
-}
-
-function echo_menu_item($v) {
-	echo '<li><a href="'.get_site_url(false).$v[url].'">'.$v['menu'].'</a></li>';
 }
