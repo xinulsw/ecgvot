@@ -1,12 +1,19 @@
 body {
 	background-color: #efefef;
 }
+
+a { text-decoration: none; }
+a:hover { text-decoration:underline; }
+a.dropdown-item { color: #efefef; }
+a.dropdown-item:hover { color: #efefef; background-color: transparent; }
+.dropdown-tlo { background: linear-gradient(to bottom,#316594,#6B94B4); }
 .nawigacja-tlo {
 	background: linear-gradient(to bottom,#6B94B4,#316594);
 }
 .nawigacja {
 	min-height: 80px;
-	font-size: 1.1rem;
+	font-size: 1.2rem;
+	font-weight: bold;
 }
 .breadcrumbs-tlo {
 	background: linear-gradient(to bottom,#EDEDED,#D5D5D5);
@@ -19,3 +26,44 @@ body {
 .nm_post_image { width: 20%;  float: left; }
 .nm_post_content { width: 80%; }
 div.list-group-item { margin-bottom: 2em }
+
+.post-row {
+	min-height: 150px;
+}
+
+.left-meta-post {
+	float: left;
+	text-align: center;
+	margin-right: 12px;
+	margin-bottom: 0;
+	border-radius: 3px;
+	overflow: hidden;
+}
+
+.post-date {
+	text-align: center;
+	padding: 8px 0;
+	width: 42px;
+	background-color: #444;
+	color: #fff;
+}
+
+.post-date .day {
+	font-size: 20px;
+	font-weight: 600;
+	display: block;
+	letter-spacing: 1px;
+}
+
+post .post-date .month {
+	display: block;
+	text-transform: uppercase;
+	line-height: 14px;
+	font-size: 11px;
+	letter-spacing: 1px;
+}
+
+.post-title {
+	font-size:1.15rem;
+	font-weight:300; 
+}

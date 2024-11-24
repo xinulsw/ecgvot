@@ -11,10 +11,11 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title><?php get_page_clean_title(); ?> - <?php get_site_name(); ?></title>
+        <title><?php get_site_name(); ?> – Materiały edukacyjne z informatyki – <?php get_page_clean_title(); ?></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="apple-touch-icon" href="icon.png">
+        <link rel="icon" type="image/x-icon" href="favicon.ico">
+        <link rel="apple-touch-icon" href="favicon.png">
         <!-- Place favicon.ico in the root directory -->
         <!-- jQuery full minified version -->
         <script src="<?php get_theme_url(); ?>/vendor/jquery-3.5.1.min.js"></script>
@@ -30,33 +31,29 @@
  <header>
   <div class="container-fluid nawigacja-tlo">
     <div class="container">
-      <div class="row">
-        <div class="col-lg-7">
-          <nav class="navbar navbar-expand-md navbar-dark nawigacja">
-            <a class="navbar-brand" href="<?php get_site_url();?>"><?php get_site_name(); ?></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-center" id="navbarCollapse">
-              <ul class="navbar-nav">
-                <?php get_i18n_navigation(return_page_slug(), 0, 0, I18N_SHOW_MENU, $component='bs_menu'); ?>
-              </ul>
-            </div>
-          </nav>
-        </div>
-        <div class="col-lg-5">
-        <form class="form-inline nawigacja my-auto justify-content-end" action="http://ecg.vot.pl/search-all" method="GET">
-          <input type="text" name="words" class="form-control mr-sm-2 search-words" value="" placeholder="Szukane słowa" aria-label="Szukaj">
-          <input type="submit" name="search" class="btn btn-outline-success my-2 my-sm-0 search-submit" value="Szukaj" />
-        </form>
-        </div>
-      </div>
+
+    <nav class="navbar navbar-expand-md navbar-dark">
+    <a class="navbar-brand" href="<?php get_site_url();?>"><?php get_site_name(); ?></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-bold">
+        <?php get_i18n_navigation(return_page_slug(), 0, 0, I18N_SHOW_MENU, $component='bs_menu'); ?>
+      </ul>
+      <form class="d-flex" action="<?php get_site_url();?>search-all" method="GET">
+        <input class="form-control me-2" type="search" placeholder="Szukane słowa" aria-label="Szukaj">
+        <button class="btn btn-outline-success search-submit" type="submit">Szukaj</button>
+      </form>
+    </div>
+    </nav> 
+
     </div>
   </div>
 
   <div class="container-fluid">
     <div class="container">
-      <nav class="breadcrumb breadcrumbs-tlo text-uppercase">
+      <nav class="breadcrumb p-2 breadcrumbs-tlo">
         <a class="breadcrumb-item" href="<?php get_site_url();?>">eCG</a>
         <!-- <a href="<?php echo find_url('index',null); ?>">Strona główna</a> -->
         <?php

@@ -15,8 +15,7 @@
 
     <div class="blog-header">
         <h1><?php get_page_title(); ?></h1>
-        <p class="lead">Materiały edukacyjne z informatyki.<br>
-        Pamiętaj: Czego dowiesz się sam, tego się nauczysz!</p>
+        <p class="lead">Materiały edukacyjne z informatyki</p>
     </div>
 
     <?php get_page_content(); ?>
